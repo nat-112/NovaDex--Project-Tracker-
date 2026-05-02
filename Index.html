@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NovaPay Launch Tracker</title>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!--TOP BAR-->
+  <div class="topbar">
+    <div class="topbar-brand"> PM <span class="accent">.</span> Tracker </div>
+     <div class="topbar-meta"> NovaDex . Product Launch Q3 2026  </div>
+      <div class="status-live"> Active </div>
+      <div>
+        <div class="main">
+
+          <!-- HERO -->
+           <div class="hero">
+            <div class="hero-eyebrow"> Software Product Launch </div>
+            <p class=" hero-sub"> Tracking all workstream from development to go live . Last updated: May 2026 </p>
+            </div>
+
+            <!-- stats-->
+             <div class="stats">
+              <div class="stat-card blue">
+                <div class="stat-label"> Total Task </div>
+                <div class="stat-value" id="stat-total"> 0 </div>
+                </div>
+                <div class="stat-card green">
+                <div class="stat-label"> Completed </div>
+                <div class=" stat-value" id="stat-done"> 0 <div>
+                  </div>
+
+                  <div class="stat-card yellow">
+                <div class="stat-label"> In progress </div>
+                <div class=" stat-value" id="stat-progress"> 0 <div>
+                  </div>
+                  <div class="stat-card red">
+                <div class="stat-label"> Blocked </div>
+                <div class=" stat-value" id="stat-blocked"> 0 <div>
+                  </div>
+                  </div>
+
+                  <!-- progress Bar-->
+                   <div class="progress-section">
+                    <div class="progress-header">
+                      <div class="progress-label"> Overall Launch Progress </div>
+                      <div class="progress-pct" id="pct-label">0%</div>
+                      </div>
+                      <div class="progress-track">
+                        <div class= "progress-fil" id="progress-fil"></div>
+                      </div>
+                      <div class="phase-labels">
+                        <span class="phase-label"> Discovery</span>
+                          <span class="phase-label"> Development</span>
+                          <span class="phase-label"> Testing </span>
+                          <span class="phase-label"> Launch </span>
+                      </div>
+                    </div>
+
+                    <!---Milestone Timeline -->
+                    <div class="milestone-section">
+                      <div class="section-head">
+                        <h2>Milestones</2>
+                          <span class="pill">Q1–Q3 2026 </span>
+                          <div>
+                            <div class ="timeline" id="timeline"></div>
+                            <div>
+
+                              <!--TABS-->
+                              <div class="tabs">
+                                <button class="tab-btn active" onclick="switchTab('tasks', this)">Task Register</button>
+                                <button class="tab-btn" onclick="switchTab('kanban', this)">Kanban Board </button>
+                                <button class="tab-btn" onclick="switchTab('risks', this)"> Risk Register </button>
+                                </div>
