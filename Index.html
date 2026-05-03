@@ -75,3 +75,133 @@
                                 <button class="tab-btn" onclick="switchTab('kanban', this)">Kanban Board </button>
                                 <button class="tab-btn" onclick="switchTab('risks', this)"> Risk Register </button>
                                 </div>
+                                <!-- Task Table Tabs -->
+                                 <div id=" tab-tasks" class="tab-content active">
+                                  <div class="section-head" style="margin-top: 24px">
+                                    <h2>Task Register </h2>
+                                    <span class="pill"> All Workstreams</span>
+                                    <button class="add-btn" onclick="openModal()"> + Add Task </button>
+                                    </div>
+                                    <table class="task-table">
+                                      <thead>
+                                        <tr>
+                                          <th>#</th>
+                                          <th>Task</th>
+                                          <th>Owner</th>
+                                          <th>Priority</th>
+                                          <th>Deadline</th>
+                                          <th>Status</th>
+                                          </tr>
+                                      </thead> 
+                                      <tbody id="task-tbody"></tbody>
+                                    </table>
+                                    </div>
+
+                                    <!--Kanban Tab -->
+                                    <div id=" tab-kanban" class="tab-content">
+                                      <div class="section-head" style="margin-top: 24px;">
+                                        <h2>Kanban Board</h2>
+                                        <span class="pill"> Drag cards to update status </span>
+                                        </div>
+                                        <div class="kanban-board">
+                                          <div class="kanban-col col-todo" id="col-todo" ondragover="allowDrop(event)" ondrop="drop(event, 'todo')">
+                                            <div class=" kanban-col-header">
+                                              <div class="kanban-col-title"> To Do </div>
+                                              <div class="kanban-count" id="count-todo">0</div>
+                                              </div>
+                                              </div>
+                                              <div class="kanban-col-progress" id=" col-progress" ondragover="allowDrop(event)" ondrop="drop(event,'inprogress')">
+                                                <div class="kanban-col-header">
+                                                  <div class="kanban-col-title"> In Progress <div>
+                                                    <div class="kanban-count" id="count-inprogress">0</div>
+                                                    </div>
+                                                    </div>
+                                                    <div class="kanban-col col-review" id="col-review" ondragover="allowDrop(event)" ondrop="drop(event,'done')">
+                                                      <div class="kanban-col-header">
+                                                        <div class="kaban-col-title"> In Review </div>
+                                                        <div class="kanban-count" id="count-review">0</div>
+                                                        </div>
+                                                        </div>
+                                                        <div class="kanban-col col-review" id="col-review" ondragover="allowDrop(event)" ondrop="drop(event,'done')">
+                                                      <div class="kanban-col-header">
+                                                        <div class="kaban-col-title">Done</div>
+                                                        <div class="kanban-count" id="count-review">0</div>
+                                                        </div>
+                                                        </div>
+                                                        </div>
+                                                        </div>
+
+                                                        <!--Risk Register Tab -->
+                                                        <div id="tab-risks" class="tab-content">
+                                                          <div class="section-head" style="margin-top: 24px;"> 
+                                                            <h2>Risk Register<h2>
+                                                              <span class="pill"> Live Project Risk</span>
+                                                              <div>
+                                                                <table class="task-table">
+                                                                  <thread>
+                                                                    <tr>
+                                                                      <th>#<th>
+                                                                        <th>Risk Description</th>
+                                                                        <th>Category</th>
+                                                                        <th>Likelihood</th>
+                                                                        <th>Impact</th>
+                                                                        <th>Risk Score </th>
+                                                                        <th>Mitigation</th>
+                                                                        <th>Owner</th>
+                                                                        </tr>
+                                                                        </thread>
+                                                                        <tbody id="risk-tbody"></tbody>
+                                                                      </table>
+                                                                          </div>
+                                                                        </div>
+                                                                        <!--Add Task Modal-->
+                                                                        <div class="modal-overlay" id="modal-overlay" onclick="closeModal()">
+                                                                          <div class="modal" onclick="event.stopPropagation()">
+                                                                            <div class="modal-haeder">
+                                                                              <h3>Add New Task</h3>
+                                                                              <button class="modal-close" onclick="closeModal()">X</button>
+                                                                              <div>
+                                                                                <div class="modal-body">
+                                                                                  <div class="form-group">
+                                                                                    <label> Task Name </label>
+                                                                                    <input type="text" id="new-task-name" placeholder="e.g. Set up staging enviroment"/>
+                                                                                    </div>
+                                                                                    <div class="form-row">
+                                                                                      <div class="form-group">
+                                                                                        <label> Owner </label>
+                                                                                        <input type="text" id="new-task-name" placeholder="e.g. Natasha W">
+                                                                                        </div>
+                                                                                        <div class="form-group">
+                                                                                          <label> Deadline </label>
+                                                                                          <input type="text" id="new-task-deadline" />
+                                                                                          </div>
+                                                                                          </div>
+                                                                                          <div class="form-row">
+                                                                                            <div class="form-group">
+                                                                                              <label> Priority </label>
+                                                                                              <select id="new-task-priority">
+                                                                                                <option value="high">High</option>
+                                                                                                <option value="med" selected>Medium</option>
+                                                                                                <option value="low"> Low </option>
+                                                                                                </select>
+                                                                                                </div>
+                                                                                                <div class="form-group">
+                                                                                                  <label>Status</label>
+                                                                                                  <select id="new-task-status">
+                                                                                                    <option value="todo" selected>To Do </option>
+                                                                                                    <option value="inprogress" selected> In progress</option>
+                                                                                                    <option value="review" selected>In Review </option>
+                                                                                                    <option value="done" selected>Done</option>
+                                                                                                    <option value="blocked" selected>Blocked </option>
+                                                                                                    </select>
+                                                                                                    </div>
+                                                                                                  </div>
+                                                                                                  <button class="submit-btn" onclick="addTask()"> Add Task </button>
+                                                                                                  </div>
+                                                                                                  </div>
+                                                                                                  </div>
+                                                                                                  <script src="app.js"></script>
+                                                                                                </body>
+                                                                                                </html>
+
+
