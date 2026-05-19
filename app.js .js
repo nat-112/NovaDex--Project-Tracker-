@@ -125,6 +125,98 @@ function renderTable() {
         const d1Str = d1.toLocaleDateString("en-GB", { day: "2-digit", month:"short", year:"numeric" }); 
         const idStr = String(t.id).padStart(2, "0");
 
-    
+        const row = document.createElement("tr"); 
+        row.innerHTML = `
+        <td style="color:var(--muted); font-size:0.72rem">${idStr}</td>
+        <td class="task-name">${t.name}</td>
+        <td>
+        <div class="task-owner">
+        <div class= "avatar" style="background:${t.color}22;color:${t.color}; border:1px solid ${t.color}44">${t.initials}</div>
+        <span style="font-size: 0.78rem; color:var(--muted)"> ${t.owner}</span>
+        </div>
+        </td>
+        <td><span class="${priorityClass[t.priority]}">${priorityLabel[t.priority]} </span></td>
+        <td><span class="deadline${overdue ? "overdue" : ""}">${dlStr}${overdue ? "⚠" : ""} </span></td>
+        <td>
+        <select class="badge ${statusClass[t.status]. replace('badge', '')} status-select" data-id=${t.id}" onchange="changeStatus(${t.id}, this.value)">
+        <option value="todo" ${t.status=="todo" ? "selected":""}> To Do</option>
+        <option value="inprogress" ${t.status=="inprogress" ? "selected":""}> In progress</option>
+        <option value="review" ${t.status=="review" ? "selected":""}> In Review</option>
+        <option value="Done" ${t.status=="done" ? "selected":""}> Done</option>
+        <option value="blocked" ${t.status=="blocked" ? "selected":""}> Blocked</option>
+        </select>
+        </td>`; 
+        tbody.appendChild(row); 
 }); 
+}
+function renderStats() {
+    const total = tasks.length; 
+    const done = tasks.filter(t => t.status === "done").length; 
+    const inprog = tasks.filter(t => t.status === "inprogress").length; 
+    const blocked = tasks.filter(t => t.status === "blocked").length; 
+    const pct  =Math.round((done / total) * 100); 
+
+    document.getElementById("stat-total").textContent = total; 
+    document.getElementById("stat-done").textContent = done; 
+    document.getElementById("stat-progress").textContent = inprog; 
+    document.getElementById("stat-blocked").textContent = blocked; 
+    document.getElementById("pct-label").textContent =pct + "%"; 
+
+    setTimeout(() => {
+        document.getElementById("progress-fill").style.width = pct + "%"; 
+    }, 200); 
+}
+
+function renderKanban() {
+    //group tasks by their Kanban 
+    const cols = {todo:[], inprogress:[], review:[], done:[] }; 
+    tasks.forEach(t => {
+        const col =t.status === "blocked" ? "todo" : t.status; 
+        if (cols[col] !== undefined) cols[col]. push(t); 
+    }); 
+    //clearing existing cards from each column 
+    ["todo", "inprogress", "review", "done"].forEach(col => {
+        const colEl = document.getElementById("col-" +(col === "inprogress" ? "progress" : col)); 
+        colEl.querySelectorAll(".kanban-card").forEach(c => c.remove()); 
+        document.getElementById("count-" + col).textContent = cols[col].lenght; 
+
+        cols[col].forEach(t => {
+            const card = document.createElement("div");
+            card.className = "Kanban-card";
+            card.draggable = true; 
+            card.dataset.id = t.id; 
+            card.innerHTML = `
+            <div class="kanban-card-title">${t.name}</div>
+            <div class="kanban-acrd-footer">
+            <span class="kanban-card-tag">${priorityLabel[t.priority]} </span>
+            <div class="avatar" style="background:${t.color}22;color:${t.color};border:1px soild ${t.color}44;width:22px;
+            height:22px;font-size:0.55rem">${t.initials}</div>
+            </div> `; 
+
+            card.addEventListener("dragstart", (e) => {
+                dragId = t.id; 
+                setTimeout(() => card.classList.add("dragging"), 0); 
+            });
+            card.addEventListener("dragend", () => {
+                card.classList.remove("dragging"); 
+            }); 
+            colEl.appendChild(card);
+
+        });
+    });
+}
+
+function renderRisks() {
+    const tbody = document .getElementById("risk-tbody"); 
+    tbody.innerHTML = "";
+    risks.forEach((r, i) => {
+        const score = r.likelihood * r.impact; 
+        let riskLevel  =  score <= 6 ? "Low" : score <= 12 ? "Medium" : "High";
+        let riskClass = score <= 6 ? "risk-low" : score <= 12 ? "risk-medium": "risk-high"; 
+        tbody.innerHTML +=  `
+        <tr>
+        <td style="color:var(--muted); font-size:0.72rem">${String(i+1).padStart(2,"0")}</td>
+        <td style="font-size:0.82rem;font-weight:500;max-width:200px">${r.desc}</td>
+        `
+    })
 }
