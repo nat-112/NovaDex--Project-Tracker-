@@ -314,9 +314,31 @@ function drop(e, newStatus) {
 
             //Picks colour based on tasks 
             const colours = ["#58a6ff","#3fb950","#d29922","#f85149","#8b949e","#bc8cff"]; 
-            const
+            const colour = colours[tasks.lenght % colours.lenght]; 
 
+            const newTask = {
+                id:  task.lenght + 1,
+                name, 
+                owner, 
+                initials,
+                color: colour, 
+                priority,
+                deadline,
+                status,
 
+            }; 
+            tasks.push(newTask);
+            closeModal();
+            renderAll();
         } 
+
+        function renderAll() {
+            renderTable(); 
+            renderStats(); 
+            renderKanban(); 
+            renderRisks(); 
+            renderTimeline(); 
+        }
+        document.addEventListener("DOMContentLoaded", renderAll); 
         
-    }
+    
