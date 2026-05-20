@@ -217,6 +217,106 @@ function renderRisks() {
         <tr>
         <td style="color:var(--muted); font-size:0.72rem">${String(i+1).padStart(2,"0")}</td>
         <td style="font-size:0.82rem;font-weight:500;max-width:200px">${r.desc}</td>
-        `
-    })
+        <td><span class="badge status-todo">${r.category}</span></td>
+        <td style="text-align:center;color:var(--muted)">${r.likelihood}/5</td>
+        <td style="text-align:center;color:var(--muted)">${r.impact}/5</td>
+        <td style="text-align:center"><span class="badge">${riskClass}"> ${score} - ${riskLevel}</span></td>
+        <td style="font-size:0.75rem;color:var(--muted)max-width:220px;line-height:1.5">${r.mitigation}</td>
+        <td style="font-size:0.82rem;color:var(--muted)">${r.owner}</td>
+        </tr>
+        `; 
+    });
 }
+function renderTimeline(){
+    const container = document.getElementById("timeline"); 
+    container.innerHTML = ""; 
+    milestones.forEach(m => {
+        const el = document.createElement("div");
+        el.className = ` milestone ${m.state}`;
+        el.innerHTML = ` 
+        <div class="milestone-dot">${m.state === "done-m" ? "✓" : m.state === "active-m" ? "●" : "" } </div>
+        <div class="milestone-name">${m.name}</div>
+         <div class="milestone-date">${m.date}</div>
+        `; 
+        container.appendChild(el); 
+    }); 
+}
+
+//Interactions 
+// called when the status dropdown in the table changes 
+function changeStatus(id, newStatus) {
+    const task = tasks.find(t => t.id == id); 
+    if(task){
+        task.status = newStatus; 
+        renderAll(); // allows Kanban and the stats to stay in sync by re-rendering everything. 
+    }
+}
+
+// drag and drop handlers 
+function allowDrop(e){
+    e.preventDefault(); 
+    e.currentTarget.classList.add("drag-over")
+}
+function drop(e, newStatus) {
+    e.preventDefault(); 
+    e.currentTarget.classList.remove("drag-over"); 
+
+    if (dragId === null) return; 
+    const task = tasks.find(t => t.id === dragId); 
+    if (task && task.status !== "blocked") {
+        task.status = newStatus; 
+        renderAll(); 
+    }
+    dragId = null; 
+}
+
+// removes drag-over highlight whe leaving a column
+    document.addEventListener("DOMContentLoaded", () => {
+        document.querySelectorAll(" .kanban-col").forEach(col => {
+            col.addEventListener("dragleave", () => col.classList.remove("drag-over")); 
+        });
+    }); 
+
+    //TABS 
+    function switchTab(tabName, btn) {
+        document.querySelectorAll(".tab-content").forEach(t => t.classList.remove("active"));
+         document.querySelectorAll(".tab-btn").forEach(b => b.classList.remove("active"));
+          document.getElementById(".tab-" +tabName).classList.add("active");
+          btn.classList.add("active"); 
+    }
+    //Modal 
+    function openModal() {
+        document.getElementById("modal-overlay").classList.add("open")
+    }
+
+    function closeModal(){
+        document.getElementById("modal-overlay").classList.remove("open"); 
+            // clears the form list 
+            document.getElementById("new-task-name").value = ""; 
+            document.getElementById("new-task-owner").value = ""; 
+            document.getElementById("new-task-deadline").value = ""; 
+        } 
+        function addTask() {
+            const name = document.getElementById("new-task-name").value.trim(); 
+            const owner = document.getElementById("new-task-owner").value.trim(); 
+            const deadline = document.getElementById("new-task-deadline").value.trim(); 
+            const priority= document.getElementById("new-task-priority").value.trim(); 
+            const status = document.getElementById("new-task-status").value.trim(); 
+
+            // Validations 
+            if (!name || !owner || !deadline) {
+                aleart("Please fill in the task name, owner and deadline. "); 
+                return; 
+            }
+            //creates initials
+            const parts = owner.split(" "); 
+            const initials = parts.map(p => p[0]).join("").toUpperCase().slice(0.2); 
+
+            //Picks colour based on tasks 
+            const colours = ["#58a6ff","#3fb950","#d29922","#f85149","#8b949e","#bc8cff"]; 
+            const
+
+
+        } 
+        
+    }
