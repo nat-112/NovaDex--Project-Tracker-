@@ -314,13 +314,13 @@ function drop(e, newStatus) {
 
             //Picks colour based on tasks 
             const colours = ["#58a6ff","#3fb950","#d29922","#f85149","#8b949e","#bc8cff"]; 
-            const colour = colours[tasks.lenght % colours.lenght]; 
+            const colour = colours[tasks.length % colours.length]; 
 
             const newTask = {
                 id:  task.lenght + 1,
                 name, 
                 owner, 
-                initials,
+                initials, 
                 color: colour, 
                 priority,
                 deadline,

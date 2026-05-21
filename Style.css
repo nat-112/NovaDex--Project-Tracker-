@@ -1,0 +1,21 @@
+:root{
+    --bg: #0d1117;
+    --surface: #161b22; 
+    --surface2: #1c2330; 
+    --border: #30363d ;
+    --accent: #58a6ff;
+    --green: #3fb950;
+    --yellow: #d29922;
+    --red: #f85149;
+    --text: #e6edf3;
+    --muted: #8b949e;
+    --font-head: 'Syne', sans-serif;
+    --font-mono: 'DM Mono', monospace;
+    --radius: 10px; 
+}
+
+body{
+    background: var(--bg);
+    color:var(--text);
+    font-family: var(--font-mono);
+}
