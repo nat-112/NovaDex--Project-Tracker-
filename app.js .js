@@ -4,19 +4,19 @@
 const tasks = [ 
     { id: 1, name: "Define product requirements & scope", owner: "Natasha W", initials: "NW", color: "#58a6ff", priority: "high", deadline: "10-02-2026", status: "done" },
     { id: 2, name: "Stakeholder kick-off meeting", owner: "James O", initials: "JO", color: "#3fb950", priority: "high", deadline: "14-02-2026", status: "done" }, 
-    { id: 3, name: "UX wireframes & user journey mapping", owner: "James O", initials: "JO", color: "#d29922", priority: "high", deadline: "14-02-2026", status: "done" }, 
-    { id: 4, name: "Technical architecture sign-off", owner: "James O", initials: "JO", color: "#58a6ff", priority: "high", deadline: "14-02-2026", status: "done" }, 
-    { id: 5, name: "Backend API development", owner: "James O", initials: "JO", color: "#8b949e", priority: "high", deadline: "14-02-2026", status: "done" }, 
-    { id: 6, name: "Frontend build & integration", owner: "James O", initials: "JO", color: "#8b949e", priority: "high", deadline: "14-02-2026", status: "done" }, 
-    { id: 7, name: "QA testing - regression suites", owner: "James O", initials: "JO", color: "#f85149", priority: "high", deadline: "14-02-2026", status: "inprogress" }, 
-    { id: 8, name: "Security and penetration testing", owner: "James O", initials: "JO", color: "#3fb950", priority: "high", deadline: "14-02-2026", status: "inprogress" }, 
-    { id: 9, name: "Performance and load testing", owner: "James O", initials: "JO", color: "#f85149", priority: "high", deadline: "14-02-2026", status: "inprogress" }, 
-    { id: 10, name: "Marketing launch assets", owner: "James O", initials: "JO", color: "#d29922", priority: "high", deadline: "14-02-2026", status: "review" }, 
-    { id: 11, name: "App store submission (iOS & Android)", owner: "James O", initials: "JO", color: "#8b949e", priority: "high", deadline: "14-02-2026", status: "todo" }, 
-    { id: 12, name: "Customer support team training", owner: "James O", initials: "JO", color: "#58a6ff", priority: "high", deadline: "14-02-2026", status: "todo" }, 
-    { id: 13, name: "GDPR compliance review", owner: "James O", initials: "JO", color: "#3fb950", priority: "high", deadline: "14-02-2026", status: "blocked" }, 
-    { id: 14, name: "Launch comms & press release", owner: "Sara K", initials: "SK", color: "#d29922", priority: "med", deadline: "14-02-2026", status: "todo" }, 
-    { id: 15, name: "Go-live deployment & monitoring", owner: "Dev Team", initials: "DT", color: "#8b949e", priority: "high", deadline: "25-07-2026", status: "todo" }
+    { id: 3, name: "UX wireframes & user journey mapping", owner: "Sara K", initials: "SK", color: "#d29922", priority: "high", deadline: "14-02-2026", status: "done" }, 
+    { id: 4, name: "Technical architecture sign-off", owner: "Sara K", initials: "SK", color: "#58a6ff", priority: "high", deadline: "26-02-2026", status: "done" }, 
+    { id: 5, name: "Backend API development", owner: "James O", initials: "JO", color: "#8b949e", priority: "high", deadline: "10-03-2026", status: "done" }, 
+    { id: 6, name: "Frontend build & integration", owner: "Natasha W", initials: "NW", color: "#8b949e", priority: "high", deadline: "15-03-2026", status: "done" }, 
+    { id: 7, name: "QA testing - regression suites", owner: "Natasha W", initials: "NW", color: "#f85149", priority: "high", deadline: "15-03-2026", status: "inprogress" }, 
+    { id: 8, name: "Security and penetration testing", owner: "James O", initials: "JO", color: "#3fb950", priority: "high", deadline: "21-05-2026", status: "inprogress" }, 
+    { id: 9, name: "Performance and load testing", owner: "Grace K", initials: "GK", color: "#f85149", priority: "high", deadline: "22-05-2026", status: "inprogress" }, 
+    { id: 10, name: "Marketing launch assets", owner: "James O", initials: "JO", color: "#d29922", priority: "high", deadline: "06-06-2026", status: "review" }, 
+    { id: 11, name: "App store submission (iOS & Android)", owner: "Steve B", initials: "SB", color: "#8b949e", priority: "high", deadline: "10-06-2026", status: "todo" }, 
+    { id: 12, name: "Customer support team training", owner: "Steve B", initials: "SB", color: "#58a6ff", priority: "high", deadline: "27-06-2026", status: "todo" }, 
+    { id: 13, name: "GDPR compliance review", owner: "Grace K", initials: "GK", color: "#3fb950", priority: "high", deadline: "19-07-2026", status: "blocked" }, 
+    { id: 14, name: "Launch comms & press release", owner: "Sara K", initials: "SK", color: "#d29922", priority: "med", deadline: "25-07-2026", status: "todo" }, 
+    { id: 15, name: "Go-live deployment & monitoring", owner: "Dev Team", initials: "DT", color: "#8b949e", priority: "high", deadline: "29-07-2026", status: "todo" }
 ];
 
 const risks = [
